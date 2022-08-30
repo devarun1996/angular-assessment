@@ -1,0 +1,63 @@
+<div style="height: 100%; width: 100%; padding: 10px 10px 10px 10px">
+
+    <br>
+
+    <div>
+        <h2 style="margin-left: 45%">All Jobs</h2>
+    </div>
+
+    <div style="float: right">
+        <button pButton type="button" label="Create new Job" [routerLink]="['./new']"
+         class="p-button-primary"></button>
+    </div>
+    <br>
+    <br>
+    <br>
+
+    <p-table [value]="jobData"  styleClass="p-datatable-customers" [rowHover]="true"
+    [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" responsiveLayout="scroll"
+    [paginator]="true">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>ID</th>
+                <th pSortableColumn="job_title">
+                    Title
+                    <p-sortIcon field="job_title"></p-sortIcon>
+                </th>
+                <th pSortableColumn="job_start_date">
+                    Start date
+                    <p-sortIcon field="job_start_date"></p-sortIcon>
+                </th>
+                <th pSortableColumn="job_close_date">
+                    Close date
+                    <p-sortIcon field="job_close_date"></p-sortIcon>
+                </th>
+                <th pSortableColumn="experience_required">
+                    Experience required
+                    <p-sortIcon field="experience_required"></p-sortIcon>
+                </th>
+                <th pSortableColumn="number_of_openings">
+                    Number of openings
+                    <p-sortIcon field="number_of_openings"></p-sortIcon>
+                </th>
+                <th>Notes</th>
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-job>
+            <tr>
+                <td>{{job.job_number}}</td>
+                <td>{{job.job_title}}</td>
+                <td>{{job.job_start_date | date: 'dd/MM/yyyy'}}</td>
+                <td>{{job.job_close_date | date: 'dd/MM/yyyy'}}</td>
+                <td style="text-align: center">{{job.experience_required ? 'Yes' : 'No'}}</td>
+                <td style="text-align: center">{{job.number_of_openings}}</td>
+                <td>{{job.job_notes}}</td>
+                <td style="text-align: center">
+                    <button pButton type="button" pTooltip="Edit" tooltipPosition="top" class="p-button-secondary p-button-text"
+                     icon="pi pi-pencil" [routerLink]="'./'+job.id"></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
